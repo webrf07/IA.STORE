@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout — IA STORE</title>
+  <meta name="theme-color" content="#142B45">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cart.css">
+</head>
+<body data-page="checkout">
+  <div id="site-header"></div>
+
+  <main class="page">
+    <h1 class="page__title">Checkout</h1>
+
+    <div class="cart__layout" id="checkout-layout">
+      <form class="checkout-form" id="checkout-form" novalidate>
+        <h2>Delivery details</h2>
+        <div class="form-grid">
+          <label class="field field--wide">Full name
+            <input id="c-name" name="name" type="text" autocomplete="name" required>
+          </label>
+          <label class="field">Phone number
+            <input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+          </label>
+          <label class="field">Wilaya / City
+            <input id="c-wilaya" name="wilaya" type="text" list="wilaya-list" autocomplete="address-level1" required>
+            <datalist id="wilaya-list"></datalist>
+          </label>
+          <label class="field field--wide">Address
+            <input id="c-address" name="address" type="text" autocomplete="street-address" required>
+          </label>
+          <label class="field field--wide">Order notes (optional)
+            <textarea id="c-notes" name="notes" rows="3"></textarea>
+          </label>
+        </div>
+        <p class="pay-note">Payment: cash on delivery. We will call you to confirm your order.</p>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <button type="submit" class="btn btn--primary btn--block btn--lg" id="place-order">Place order</button>
+      </form>
+
+      <aside class="summary" id="summary">
+        <h2>Your order</h2>
+        <ul class="sum-items" id="sum-items"></ul>
+        <div class="summary__row"><span>Subtotal</span><span id="sum-subtotal">—</span></div>
+        <div class="summary__row"><span>Delivery</span><span class="muted">Confirmed by phone</span></div>
+        <div class="summary__row summary__total"><span>Total</span><span id="sum-total">—</span></div>
+        <a class="link-arrow" href="cart.html">← Edit cart</a>
+      </aside>
+    </div>
+
+    <div class="notice" id="checkout-empty" hidden>
+      <h3>Nothing to check out</h3>
+      <p id="checkout-empty-text">Your cart is empty.</p>
+      <a class="btn btn--primary" href="shop.html">Continue shopping</a>
+    </div>
+
+    <div class="success" id="success" hidden>
+      <div class="success__mark">✓</div>
+      <h2>Thank you — your order is received</h2>
+      <p>Order number</p>
+      <p class="success__number" id="order-number"></p>
+      <p>We will contact you by phone shortly to confirm your order and delivery.</p>
+      <a class="btn btn--primary" href="shop.html">Continue shopping</a>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="js/checkout.js"></script>
+</body>
+</html>

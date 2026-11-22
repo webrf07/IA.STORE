@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IA STORE — Smart Casual Menswear</title>
+  <meta name="description" content="IA STORE — Smart Casual menswear. Classic elegance with a modern edge.">
+  <meta name="theme-color" content="#142B45">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <!-- HERO: the storefront photo is the visual; SHOP NOW is the only extra element -->
+    <section class="hero" aria-label="IA STORE storefront">
+      <img class="hero__img" src="images/hero-store.jpg" alt="IA STORE boutique entrance with a navy awning" fetchpriority="high">
+      <a class="btn hero__btn" href="shop.html">Shop Now</a>
+    </section>
+
+    <!-- FEATURED CATEGORIES -->
+    <section class="section" id="categories">
+      <div class="section__head">
+        <h2 class="section__title">Featured Categories</h2>
+      </div>
+      <div class="cat-grid" id="cat-grid"></div>
+    </section>
+
+    <!-- NEW ARRIVALS -->
+    <section class="section" id="shop-section">
+      <div class="section__head">
+        <h2 class="section__title">New Arrivals</h2>
+        <a class="link-arrow" href="shop.html?new=1">View all →</a>
+      </div>
+      <div class="grid" id="new-grid"></div>
+    </section>
+
+    <!-- BEST SELLERS (shown only when products are marked as best sellers) -->
+    <section class="best" id="best-section" hidden>
+      <div class="section">
+        <div class="section__head">
+          <h2 class="section__title">Best Sellers</h2>
+          <div class="carousel-nav">
+            <button type="button" id="best-prev" aria-label="Previous">←</button>
+            <button type="button" id="best-next" aria-label="Next">→</button>
+          </div>
+        </div>
+        <div class="carousel" id="best-track"></div>
+      </div>
+    </section>
+
+    <!-- PROMOTION (shown only when products have an old price) -->
+    <section class="promo" id="promo-section" hidden>
+      <div class="promo__inner">
+        <p class="eyebrow eyebrow--light">Seasonal Offers</p>
+        <h2 class="promo__title" id="promo-title">Selected pieces on sale</h2>
+        <a class="btn btn--light" href="shop.html?sale=1">Shop the Sale</a>
+      </div>
+    </section>
+
+    <!-- BRAND STATEMENT -->
+    <section class="statement" id="about">
+      <div class="statement__inner reveal">
+        <p class="eyebrow">About IA STORE</p>
+        <blockquote class="statement__quote">Wear the style.<br>Define yourself.</blockquote>
+        <p class="statement__text">Smart Casual menswear where timeless tailoring meets a modern, youthful silhouette. Quiet luxury, considered details, and pieces made to be worn every day.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="js/products.js"></script>
+</body>
+</html>

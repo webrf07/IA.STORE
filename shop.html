@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — IA STORE</title>
+  <meta name="theme-color" content="#142B45">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/shop.css">
+</head>
+<body data-page="shop">
+  <div id="site-header"></div>
+
+  <main class="shop">
+    <div class="shop__head">
+      <h1>Shop</h1>
+      <p id="result-count" class="muted" aria-live="polite"></p>
+    </div>
+
+    <div class="shop__layout">
+      <aside class="filters" id="filters-panel" aria-label="Filters">
+        <div class="filters__top">
+          <h2>Filters</h2>
+          <button type="button" class="icon-btn" id="filters-close" aria-label="Close filters">×</button>
+        </div>
+
+        <div class="f-group">
+          <h3>Category</h3>
+          <div class="chips" id="f-category"></div>
+        </div>
+        <div class="f-group">
+          <h3>Size</h3>
+          <div class="chips" id="f-size"></div>
+        </div>
+        <div class="f-group">
+          <h3>Color</h3>
+          <div class="swatches" id="f-color"></div>
+        </div>
+        <div class="f-group">
+          <h3>Price</h3>
+          <div class="price-range">
+            <input id="f-min" type="number" min="0" inputmode="numeric" placeholder="Min" aria-label="Minimum price">
+            <span>—</span>
+            <input id="f-max" type="number" min="0" inputmode="numeric" placeholder="Max" aria-label="Maximum price">
+          </div>
+        </div>
+        <div class="f-group">
+          <h3>Collections</h3>
+          <label class="check"><input type="checkbox" id="f-new"> New Arrivals</label>
+          <label class="check"><input type="checkbox" id="f-best"> Best Sellers</label>
+          <label class="check"><input type="checkbox" id="f-sale"> On Sale</label>
+          <label class="check"><input type="checkbox" id="f-stock"> In stock only</label>
+        </div>
+
+        <button type="button" class="btn btn--outline btn--block btn--sm" id="clear-filters">Clear all</button>
+        <button type="button" class="btn btn--primary btn--block filters__apply" id="filters-apply">Show results</button>
+      </aside>
+
+      <section class="shop__main">
+        <div class="shop__bar">
+          <button type="button" class="btn btn--outline btn--sm filters__open" id="filters-open">Filters</button>
+          <label class="sort">Sort by
+            <select id="sort">
+              <option value="newest">Newest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="best">Best Selling</option>
+            </select>
+          </label>
+        </div>
+        <div class="grid" id="grid"></div>
+      </section>
+    </div>
+    <div class="drawer-backdrop" id="filters-backdrop"></div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="js/products.js"></script>
+</body>
+</html>

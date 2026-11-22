@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product — IA STORE</title>
+  <meta name="theme-color" content="#142B45">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/product.css">
+</head>
+<body data-page="product">
+  <div id="site-header"></div>
+
+  <main class="pd">
+    <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+    <div id="product-root">
+      <div class="pd__grid pd__grid--skeleton"><div class="skel skel--img"></div><div class="skel-col"><i></i><i></i><i></i><i></i></div></div>
+    </div>
+
+    <section class="section" id="related-section" hidden>
+      <div class="section__head"><h2 class="section__title">You may also like</h2></div>
+      <div class="grid" id="related-grid"></div>
+    </section>
+  </main>
+
+  <!-- Image lightbox with zoom -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Product images">
+    <button type="button" class="lightbox__close" id="lb-close" aria-label="Close">×</button>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" id="lb-prev" aria-label="Previous image">‹</button>
+    <div class="lightbox__stage"><img id="lb-img" alt=""></div>
+    <button type="button" class="lightbox__nav lightbox__nav--next" id="lb-next" aria-label="Next image">›</button>
+    <div class="lightbox__count" id="lb-count"></div>
+  </div>
+
+  <div id="site-footer"></div>
+  <script type="module" src="js/product-details.js"></script>
+</body>
+</html>
