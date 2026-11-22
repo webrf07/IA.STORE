@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Orders — IA STORE Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin" data-page="orders">
+  <div class="admin-layout">
+    <aside class="sidebar" id="admin-sidebar"></aside>
+    <div class="admin-backdrop" id="admin-backdrop"></div>
+
+    <div class="admin-content">
+      <header class="admin-top" id="admin-top"></header>
+
+      <main class="admin-main">
+        <section class="panel">
+          <div class="panel__head">
+            <div>
+              <h2>Customer orders</h2>
+              <p class="muted">Confirming an order deducts its stock automatically; cancelling restores it.</p>
+            </div>
+            <div class="panel__tools">
+              <input class="input input--search" id="order-search" type="search" placeholder="Order #, name, phone…" aria-label="Search orders">
+            </div>
+          </div>
+          <div class="tabs tabs--wrap" id="order-tabs"></div>
+          <div class="olist" id="orders-list"><div class="empty">Loading…</div></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Order details -->
+  <div class="modal" id="order-modal" hidden role="dialog" aria-modal="true" aria-labelledby="om-title">
+    <div class="modal__box modal__box--narrow">
+      <header class="modal__head">
+        <h2 id="om-title">Order</h2>
+        <button type="button" class="icon-btn" id="om-close" aria-label="Close">×</button>
+      </header>
+      <div class="modal__body" id="om-body"></div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/orders.js"></script>
+</body>
+</html>

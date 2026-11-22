@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Products — IA STORE Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin" data-page="products">
+  <div class="admin-layout">
+    <aside class="sidebar" id="admin-sidebar"></aside>
+    <div class="admin-backdrop" id="admin-backdrop"></div>
+
+    <div class="admin-content">
+      <header class="admin-top" id="admin-top"></header>
+
+      <main class="admin-main">
+        <section class="panel">
+          <div class="panel__head">
+            <div>
+              <h2>All products</h2>
+              <p class="muted" id="p-count"></p>
+            </div>
+            <div class="panel__tools">
+              <select class="input input--select" id="p-cat" aria-label="Filter by category"></select>
+              <input class="input input--search" id="p-search" type="search" placeholder="Search products…" aria-label="Search products">
+              <button type="button" class="btn" id="add-btn">+ Add Product</button>
+            </div>
+          </div>
+          <div class="plist" id="plist"><div class="empty">Loading…</div></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add / Edit product -->
+  <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__box">
+      <header class="modal__head">
+        <h2 id="modal-title">Add Product</h2>
+        <button type="button" class="icon-btn" id="modal-close" aria-label="Close">×</button>
+      </header>
+
+      <form id="product-form" novalidate>
+        <div class="modal__body" id="modal-body">
+          <div class="form-grid">
+            <label class="field field--wide">Name
+              <input id="f-name" type="text" maxlength="120" required>
+            </label>
+            <label class="field">Category
+              <select id="f-category" required></select>
+            </label>
+            <label class="field">Availability
+              <select id="f-status">
+                <option value="available">Available</option>
+                <option value="unavailable">Unavailable</option>
+              </select>
+            </label>
+            <label class="field">Price
+              <input id="f-price" type="number" min="0" step="any" inputmode="decimal" required>
+            </label>
+            <label class="field">Old price (optional — shows a Sale badge)
+              <input id="f-old" type="number" min="0" step="any" inputmode="decimal">
+            </label>
+            <label class="field field--wide">Description
+              <textarea id="f-desc" rows="4" maxlength="2000"></textarea>
+            </label>
+          </div>
+
+          <fieldset class="box">
+            <legend>Colors</legend>
+            <div class="color-add">
+              <input class="input" id="c-name" type="text" maxlength="30" placeholder="Color name (e.g. Navy)">
+              <input id="c-hex" type="color" value="#142B45" aria-label="Pick color">
+              <button type="button" class="btn btn--outline btn--sm" id="c-add">Add color</button>
+            </div>
+            <div class="tags" id="c-list"></div>
+          </fieldset>
+
+          <fieldset class="box">
+            <legend>Sizes &amp; stock</legend>
+            <div class="size-tools">
+              <button type="button" class="btn btn--outline btn--sm" id="sz-preset">Add default sizes</button>
+              <input class="input" id="sz-name" type="text" maxlength="12" placeholder="Custom size (e.g. 48)">
+              <button type="button" class="btn btn--outline btn--sm" id="sz-add">Add size</button>
+            </div>
+            <div class="size-grid" id="sz-list"></div>
+          </fieldset>
+
+          <fieldset class="box">
+            <legend>Images</legend>
+            <input id="f-files" type="file" accept="image/*" multiple>
+            <p class="hint">The first image is the main photo. Images are resized automatically before upload.</p>
+            <div class="img-grid" id="img-list"></div>
+          </fieldset>
+
+          <div class="flags">
+            <label class="check"><input type="checkbox" id="f-new"> New arrival</label>
+            <label class="check"><input type="checkbox" id="f-best"> Best seller</label>
+            <label class="check"><input type="checkbox" id="f-visible"> Visible in store</label>
+          </div>
+          <p class="form-error" id="form-error" role="alert"></p>
+        </div>
+
+        <footer class="modal__foot">
+          <button type="button" class="btn btn--outline" id="cancel-btn">Cancel</button>
+          <button type="submit" class="btn" id="save-btn">Add product</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="../js/admin.js"></script>
+</body>
+</html>

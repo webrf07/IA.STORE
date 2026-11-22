@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Login — IA STORE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin admin--login" data-page="login">
+  <main class="login">
+    <div class="login__card">
+      <div class="login__brand">IA STORE</div>
+      <p class="login__sub">Admin Panel</p>
+
+      <form id="login-form" novalidate>
+        <label class="field">Email
+          <input id="email" type="email" autocomplete="username" required>
+        </label>
+        <label class="field">Password
+          <input id="password" type="password" autocomplete="current-password" required>
+        </label>
+        <p class="form-error" id="login-error" role="alert"></p>
+        <button type="submit" class="btn btn--primary btn--block" id="login-submit">Sign in</button>
+        <button type="button" class="linklike login__reset" id="reset-btn">Forgot password?</button>
+      </form>
+
+      <a class="login__back" href="../index.html">← Back to store</a>
+    </div>
+  </main>
+  <script type="module" src="../js/auth.js"></script>
+</body>
+</html>s
