@@ -208,7 +208,7 @@ function renderHeader() {
           <span></span><span></span><span></span>
         </button>
         <a class="nav__logo" href="index.html" aria-label="IA STORE — home" id="nav-logo">
-          <img src="images/logo.png.png" alt="IA STORE" height="40">
+          <img src="logo.png.png" alt="IA STORE" height="40">
         </a>
         <nav class="nav__links" id="nav-links" aria-label="Main">
           ${link("home", "index.html", "Home")}
@@ -234,7 +234,7 @@ function renderHeader() {
       </form>
     </div>`;
 
-  // Logo: use images/logo.png when it exists, otherwise fall back to a text wordmark.
+  // Logo file is stored in the repository root; fall back to a text wordmark if it fails.
   const img = qs("#nav-logo img");
   img?.addEventListener("error", () => {
     const span = document.createElement("span");
@@ -308,7 +308,7 @@ function renderFooter() {
       </div>
       <div class="footer__bar">
         <span>© ${year} IA STORE. All rights reserved.</span>
-        <a href="admin/login.html">Staff</a>
+        <a href="login.html">Staff</a>
       </div>
     </footer>`;
 }

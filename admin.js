@@ -5,10 +5,10 @@ import { db, storage } from "./firebase.js";
 import { requireAdmin, mountShell } from "./auth.js";
 import {
   collection, doc, onSnapshot, updateDoc, setDoc, deleteDoc, serverTimestamp,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 import {
   ref, uploadBytes, getDownloadURL, deleteObject,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-storage.js";
 import {
   CATEGORIES, CATEGORY_SIZE_PRESET, SIZE_PRESETS, CONFIG, esc, money, qs, qsa, toast,
   categoryLabel, sortSizes, debounce, safeHex,
