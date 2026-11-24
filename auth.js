@@ -70,7 +70,7 @@ export function mountShell(active, user, title) {
           <span>${n.label}</span>
           ${n.key === "orders" ? '<b class="pill" id="pending-badge" hidden>0</b>' : ""}
         </a>`).join("")}
-      <a href="../index.html" target="_blank" rel="noopener">
+      <a href="index.html" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M10 14L21 3M21 14v7H3V3h7"/></svg>
         <span>View store</span>
       </a>
