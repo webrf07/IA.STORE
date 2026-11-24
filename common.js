@@ -234,7 +234,7 @@ function renderHeader() {
       </form>
     </div>`;
 
-  // Logo: use images/logo.png when it exists, otherwise fall back to a text wordmark.
+  // Logo file is stored in the repository root; fall back to a text wordmark if it fails.
   const img = qs("#nav-logo img");
   img?.addEventListener("error", () => {
     const span = document.createElement("span");
