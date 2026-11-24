@@ -131,7 +131,7 @@ img.is-broken { visibility: hidden; }
   aspect-ratio: 16 / 9; max-height: calc(100vh - var(--nav-h) - 32px); min-height: 380px;
   box-shadow: var(--shadow);
 }
-.hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.hero__img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }\n.hero__img--fallback { background: radial-gradient(ellipse at 72% 42%, rgba(233,223,208,.18), transparent 38%), linear-gradient(125deg, #0b1b2c 0%, #142B45 52%, #263b50 100%); }
 .hero::after {
   content: ""; position: absolute; inset: auto 0 0 0; height: 32%; pointer-events: none;
   background: linear-gradient(to top, rgba(10, 20, 33, .45), transparent);
