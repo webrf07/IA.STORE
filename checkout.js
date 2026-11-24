@@ -3,7 +3,7 @@
 import { db } from "./firebase.js";
 import {
   collection, addDoc, serverTimestamp,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 import { reconcileCart } from "./cart.js";
 import {
   WILAYAS, esc, money, qs, toast, initPage, saveCart,
@@ -50,7 +50,7 @@ async function init() {
   try {
     current = await reconcileCart();
   } catch (err) {
-    showEmpty(err?.message === "NOT_CONFIGURED" ? "Connect Firebase in js/firebase.js first." : "We couldn't verify your cart. Please try again.");
+    showEmpty(err?.message === "NOT_CONFIGURED" ? "Connect Firebase in firebase.js first." : "We couldn't verify your cart. Please try again.");
     return;
   }
   if (!current.lines.length) return showEmpty();
