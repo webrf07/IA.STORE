@@ -72,8 +72,8 @@ export function showError(container, err) {
     container.innerHTML = `
       <div class="notice">
         <h3>Connect your Firebase project</h3>
-        <p>Open <code>js/firebase.js</code> and paste your Firebase web-app config, then reload this page.
-        Step-by-step instructions are in <code>README.md</code>.</p>
+        <p>Open <code>firebase.js</code> and paste your Firebase web-app config, then reload this page.
+        </p>
       </div>`;
   } else {
     console.error(err);
