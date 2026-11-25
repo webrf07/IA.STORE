@@ -4,10 +4,10 @@
 import { auth, db, isConfigured } from "./firebase.js";
 import {
   signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 import {
   doc, getDoc, collection, query, where, onSnapshot,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 import { esc, qs } from "./common.js";
 
 /** A user is an admin only if admins/{uid} exists in Firestore (created manually in the console). */
