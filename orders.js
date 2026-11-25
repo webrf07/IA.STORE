@@ -4,7 +4,7 @@ import { db } from "./firebase.js";
 import { requireAdmin, mountShell } from "./auth.js";
 import {
   collection, doc, query, orderBy, onSnapshot, runTransaction, serverTimestamp,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 import {
   ORDER_STATUSES, esc, money, qs, qsa, toast, formatDate, debounce,
 } from "./common.js";
