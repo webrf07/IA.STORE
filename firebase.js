@@ -6,13 +6,13 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-s
 
 // Firebase Configuration - IA STORE
 const firebaseConfig = {
-  apiKey: "AIzaSyBMWF6V5N494DGAiIFo21KmkcbB5H_s4",
+  apiKey: "AIzaSyBMwFH6VsN494DgAiIF0e21KmkcbB5H_s4",
   authDomain: "ia-store-dcb69.firebaseapp.com",
   projectId: "ia-store-dcb69",
   storageBucket: "ia-store-dcb69.firebasestorage.app",
   messagingSenderId: "794936773230",
-  appId: "1:794936773230:web:63295ab11cbf4ebb47",
-  measurementId: "G-6VGVG4T4GF"
+  appId: "1:794936773230:web:63295bac11b1cbf4ebb47f",
+  measurementId: "G-26VGV4T4GF"
 };
 
 // Initialize Firebase
