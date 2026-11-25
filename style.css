@@ -344,10 +344,12 @@ img.is-broken { visibility: hidden; }
   .js .reveal { opacity: 1; transform: none; }
 }
 
-/* Hero fallback: keeps the storefront polished when no hero photo is configured. */
-.hero { display: grid; place-items: center; background: radial-gradient(ellipse at 72% 25%, #52677b 0, #263f58 38%, #142B45 78%); }
-.hero__img { display: none; }
-.hero__copy { position: absolute; z-index: 1; top: 50%; left: clamp(24px, 8vw, 120px); transform: translateY(-50%); max-width: 620px; color: #E9DFD0; }
-.hero__copy h1 { color: #E9DFD0; font-family: var(--serif); font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 500; line-height: .98; letter-spacing: .01em; margin: 0 0 18px; }
-.hero__copy p:not(.eyebrow) { color: rgba(233,223,208,.82); font-size: clamp(.95rem, 1.5vw, 1.15rem); letter-spacing: .04em; }
-@media (max-width:700px) { .hero__copy { left: 24px; right: 24px; } .hero__copy h1 { font-size: clamp(2.5rem, 12vw, 4rem); } }
+/* Hero photography: full-bleed editorial image with a subtle readable overlay. */
+.hero { display: block; background: var(--navy); }
+.hero__img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
+.hero::after { height: 100%; background: linear-gradient(90deg, rgba(10,20,33,.46), rgba(10,20,33,.08) 58%, rgba(10,20,33,.10)), linear-gradient(to top, rgba(10,20,33,.38), transparent 45%); }
+.hero__btn { z-index: 2; }
+.cat img { background: var(--navy-2); }
+@media (max-width: 700px) {
+  .hero__img { object-position: 56% center; }
+}
