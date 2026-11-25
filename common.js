@@ -308,7 +308,7 @@ function renderFooter() {
       </div>
       <div class="footer__bar">
         <span>© ${year} IA STORE. All rights reserved.</span>
-        <a href="admin/login.html">Staff</a>
+        <a href="login.html">Staff</a>
       </div>
     </footer>`;
 }
