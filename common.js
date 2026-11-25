@@ -18,13 +18,13 @@ export const CONFIG = {
 };
 
 export const CATEGORIES = [
-  { slug: "shirts", label: "Shirts" },
-  { slug: "polo", label: "Polo" },
-  { slug: "pants", label: "Pants" },
-  { slug: "jeans", label: "Jeans" },
-  { slug: "caps", label: "Caps" },
-  { slug: "jackets", label: "Jackets" },
-  { slug: "shoes", label: "Shoes" },
+  { slug: "jackets", label: "JACKET" },
+  { slug: "shoes", label: "SHOES" },
+  { slug: "jeans", label: "JEANS" },
+  { slug: "caps", label: "CAPS" },
+  { slug: "pants", label: "CLASSIC PANTS" },
+  { slug: "hoodie", label: "HOODIE" },
+  { slug: "shirts", label: "T-SHIRT" },
 ];
 
 export const SIZE_PRESETS = {
@@ -35,13 +35,13 @@ export const SIZE_PRESETS = {
 };
 
 export const CATEGORY_SIZE_PRESET = {
-  shirts: "letters",
-  polo: "letters",
   jackets: "letters",
-  pants: "waist",
-  jeans: "waist",
   shoes: "shoes",
+  jeans: "waist",
   caps: "one",
+  pants: "waist",
+  hoodie: "letters",
+  shirts: "letters",
 };
 
 export const ORDER_STATUSES = ["Pending", "Confirmed", "Shipped", "Delivered", "Cancelled"];
