@@ -184,10 +184,12 @@ function renderCategories(products) {
   grid.innerHTML = CATEGORIES.map((c) => {
     const fallback = products.find((p) => p.category === c.slug && p.images[0])?.images[0] || "";
     const image = categoryImages[c.slug];
+    // Resolve image URLs from this script's deployed folder, not the current page URL.
+    const imageSrc = image ? new URL(image, import.meta.url).href : "";
     return `
       <a class="cat reveal" href="shop.html?category=${encodeURIComponent(c.slug)}" data-category="${esc(c.slug)}">
         <img
-          src="${image}"
+          src="${imageSrc}"
           alt="${esc(c.label)}"
           loading="lazy"
           decoding="async"
