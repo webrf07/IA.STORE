@@ -169,11 +169,18 @@ const skeleton = (n) =>
 function renderCategories(products) {
   const grid = qs("#cat-grid");
   if (!grid) return;
-  grid.innerHTML = CATEGORIES.map((c, i) => {
+  grid.innerHTML = CATEGORIES.map((c) => {
     const fallback = products.find((p) => p.category === c.slug && p.images[0])?.images[0] || "";
     return `
-      <a class="cat reveal" href="shop.html?category=${c.slug}">
-        <img src="images/categories/${c.slug}.jpg" alt="${esc(c.label)}" loading="lazy" ${fallback ? `data-fallback="${esc(fallback)}"` : ""}>
+      <a class="cat reveal" href="shop.html?category=${encodeURIComponent(c.slug)}" data-category="${esc(c.slug)}">
+        <img
+          src="images/categories/${esc(c.slug)}.jpg"
+          alt="${esc(c.label)}"
+          loading="lazy"
+          decoding="async"
+          sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw"
+          ${fallback ? `data-fallback="${esc(fallback)}"` : ""}
+        >
         <span class="cat__label"><strong>${esc(c.label)}</strong><em>Explore →</em></span>
       </a>`;
   }).join("");
