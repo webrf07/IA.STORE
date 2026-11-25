@@ -344,12 +344,19 @@ img.is-broken { visibility: hidden; }
   .js .reveal { opacity: 1; transform: none; }
 }
 
-/* Hero photography: full-bleed editorial image with a subtle readable overlay. */
-.hero { display: block; background: var(--navy); }
-.hero__img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
-.hero::after { height: 100%; background: linear-gradient(90deg, rgba(10,20,33,.46), rgba(10,20,33,.08) 58%, rgba(10,20,33,.10)), linear-gradient(to top, rgba(10,20,33,.38), transparent 45%); }
-.hero__btn { z-index: 2; }
-.cat img { background: var(--navy-2); }
+
+/* Category images: responsive crop and sizing for desktop and phones. */
+.cat { min-width: 0; }
+.cat img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 @media (max-width: 700px) {
-  .hero__img { object-position: 56% center; }
+  .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cat { aspect-ratio: 3 / 4; }
+  .cat__label { left: 12px; right: 12px; bottom: 14px; }
+  .cat__label strong { font-size: clamp(1rem, 5vw, 1.45rem); }
 }
