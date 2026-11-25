@@ -169,12 +169,25 @@ const skeleton = (n) =>
 function renderCategories(products) {
   const grid = qs("#cat-grid");
   if (!grid) return;
+
+  // These filenames are the exact image files present in the repository root.
+  const categoryImages = {
+    jackets: "jackets.jpg",
+    shoes: "shoes.jpg",
+    jeans: "jeans.jpg",
+    caps: "caps.jpg",
+    pants: "pants.jpg",
+    hoodie: "hoodie.jpg.jpg",
+    shirts: "shirts.jpg",
+  };
+
   grid.innerHTML = CATEGORIES.map((c) => {
     const fallback = products.find((p) => p.category === c.slug && p.images[0])?.images[0] || "";
+    const image = categoryImages[c.slug];
     return `
       <a class="cat reveal" href="shop.html?category=${encodeURIComponent(c.slug)}" data-category="${esc(c.slug)}">
         <img
-          src="images/categories/${esc(c.slug)}.jpg"
+          src="${image}"
           alt="${esc(c.label)}"
           loading="lazy"
           decoding="async"
