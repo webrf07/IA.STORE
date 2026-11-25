@@ -181,10 +181,9 @@ function renderCategories(products) {
   if (!grid) return;
   grid.innerHTML = CATEGORIES.map((c, i) => {
     const fallback = products.find((p) => p.category === c.slug && p.images[0])?.images[0] || "";
-    const image = CATEGORY_IMAGES[c.slug] || fallback;
     return `
-      <a class="cat${i === CATEGORIES.length - 1 ? " cat--wide" : ""} reveal" href="shop.html?category=${c.slug}">
-        <img src="${image}" alt="${esc(c.label)} category" loading="lazy" ${fallback ? `data-fallback="${esc(fallback)}"` : ""}>
+      <a class="cat reveal" href="shop.html?category=${c.slug}">
+        <img src="images/categories/${c.slug}.jpg" alt="${esc(c.label)}" loading="lazy" ${fallback ? `data-fallback="${esc(fallback)}"` : ""}>
         <span class="cat__label"><strong>${esc(c.label)}</strong><em>Explore →</em></span>
       </a>`;
   }).join("");
