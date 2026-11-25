@@ -166,16 +166,6 @@ const skeleton = (n) =>
 /* ------------------------------------------------------------------ */
 /* HOME PAGE                                                           */
 /* ------------------------------------------------------------------ */
-const CATEGORY_IMAGES = {
-  shirts: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=85",
-  polo: "https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=900&q=85",
-  pants: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=85",
-  jeans: "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=85",
-  caps: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=900&q=85",
-  jackets: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=85",
-  shoes: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",
-};
-
 function renderCategories(products) {
   const grid = qs("#cat-grid");
   if (!grid) return;
