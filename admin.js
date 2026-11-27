@@ -271,7 +271,8 @@ async function initProducts() {
   let editing = null; // product being edited, or null for a new one
   let imgs = []; // [{ url } | { file, preview }]
   let colors = []; // [{ name, hex }]
-  let stock = {}; // { size: qty }\n  let sizeType = "clothing"; // clothing | shoes
+  let stock = {}; // { size: qty }
+  let sizeType = "clothing"; // clothing | shoes
 
   const modal = qs("#modal");
   const form = qs("#product-form");
