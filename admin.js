@@ -467,7 +467,10 @@ async function initProducts() {
 
     imgs = product ? product.images.map((url) => ({ url })) : [];
     colors = product ? product.colors.map((c) => ({ ...c })) : [];
-    stock = product ? { ...product.stock } : {};\n    const existingSizes = Object.keys(stock);\n    sizeType = existingSizes.length && existingSizes.every((s) => ["39", "40", "41", "42", "43", "44"].includes(s)) ? "shoes" : "clothing";\n    qs("#sz-type").value = sizeType;
+    stock = product ? { ...product.stock } : {};
+    const existingSizes = Object.keys(stock);
+    sizeType = existingSizes.length && existingSizes.every((s) => ["39", "40", "41", "42", "43", "44"].includes(s)) ? "shoes" : "clothing";
+    qs("#sz-type").value = sizeType;
 
     qs("#f-name").value = product?.name || "";
     qs("#f-category").value = product?.category || "";
