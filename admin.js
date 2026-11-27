@@ -371,7 +371,7 @@ async function initProducts() {
   }
 
   function renderSizes() {
-    const presets = SIZE_PRESETS[sizeType];
+    const presets = sizeType === "shoes" ? SIZE_PRESETS.shoes : SIZE_PRESETS.letters;
     qs("#sz-list").innerHTML = presets.map((s) => {
       const selected = Object.prototype.hasOwnProperty.call(stock, s);
       return `
