@@ -28,18 +28,14 @@ export const CATEGORIES = [
 ];
 
 export const SIZE_PRESETS = {
-  letters: ["XS", "S", "M", "L", "XL", "XXL"],
-  waist: ["28", "30", "32", "34", "36", "38", "40", "42"],
-  shoes: ["39", "40", "41", "42", "43", "44", "45", "46"],
+  letters: ["S", "M", "L", "XL"],\n  waist: ["S", "M", "L", "XL"],\n  shoes: ["39", "40", "41", "42", "43", "44"],
   one: ["One Size"],
 };
 
 export const CATEGORY_SIZE_PRESET = {
   jackets: "letters",
   shoes: "shoes",
-  jeans: "waist",
-  caps: "one",
-  pants: "waist",
+  jeans: "letters",\n  caps: "letters",\n  pants: "letters",
   hoodie: "letters",
   shirts: "letters",
 };
