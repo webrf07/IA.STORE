@@ -7,7 +7,7 @@ import {
   collection, doc, onSnapshot, updateDoc, setDoc, deleteDoc, serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 import {
-  ref, uploadBytes, getDownloadURL, deleteObject,
+  ref, uploadBytesResumable, getDownloadURL, deleteObject,
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-storage.js";
 import {
   CATEGORIES, CATEGORY_SIZE_PRESET, SIZE_PRESETS, CONFIG, esc, money, qs, qsa, toast,
@@ -249,6 +249,38 @@ async function compressImage(file, maxSide = 1600, quality = 0.86) {
   const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", quality));
   if (!blob) throw new Error("Could not process the image.");
   return blob;
+}
+
+/** Upload with visible progress and a timeout so the form never stays stuck silently. */
+function uploadImageWithProgress(fileRef, blob, saveBtn, index, total) {
+  return new Promise((resolve, reject) => {
+    const task = uploadBytesResumable(fileRef, blob, { contentType: "image/jpeg" });
+    let settled = false;
+    const finish = (fn, value) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeout);
+      fn(value);
+    };
+    const timeout = setTimeout(() => {
+      task.cancel();
+      finish(reject, new Error("Image upload timed out. Check your internet connection and Firebase Storage setup/rules, then try again."));
+    }, 90000);
+    task.on("state_changed", (snapshot) => {
+      const percent = snapshot.totalBytes ? Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) : 0;
+      saveBtn.textContent = `Uploading image ${index} of ${total} (${percent}%)…`;
+    }, (err) => {
+      const messages = {
+        "storage/unauthorized": "Firebase Storage denied the upload. Publish storage.rules and verify that your signed-in account has a document in admins/{your-user-uid}.",
+        "storage/unauthenticated": "Your admin session has expired. Sign in again and retry.",
+        "storage/retry-limit-exceeded": "Firebase Storage could not complete the upload after several retries. Check your connection.",
+        "storage/canceled": "The image upload was canceled.",
+        "storage/bucket-not-found": "The Firebase Storage bucket was not found. Check the Storage bucket value in firebase.js.",
+        "storage/unknown": "Firebase Storage returned an unknown upload error. Check the browser console and Storage service status.",
+      };
+      finish(reject, new Error(messages[err.code] || `Image upload failed (${err.code || "unknown"}): ${err.message || "No details returned"}`));
+    }, () => finish(resolve, task.snapshot));
+  });
 }
 
 async function deleteStoredImages(urls) {
@@ -543,10 +575,12 @@ async function initProducts() {
           urls.push(im.url);
           continue;
         }
-        saveBtn.textContent = `Uploading image ${i + 1} of ${imgs.length}…`;
+        saveBtn.textContent = `Preparing image ${i + 1} of ${imgs.length}…`;
         const blob = await compressImage(im.file);
+        if (blob.size >= 6 * 1024 * 1024) throw new Error("The compressed image is still 6 MB or larger. Choose a smaller image.");
         const fileRef = ref(storage, `products/${docRef.id}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`);
-        await uploadBytes(fileRef, blob, { contentType: "image/jpeg" });
+        await uploadImageWithProgress(fileRef, blob, saveBtn, i + 1, imgs.length);
+        saveBtn.textContent = `Getting image link ${i + 1} of ${imgs.length}…`;
         urls.push(await getDownloadURL(fileRef));
       }
 
