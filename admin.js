@@ -271,7 +271,7 @@ async function initProducts() {
   let editing = null; // product being edited, or null for a new one
   let imgs = []; // [{ url } | { file, preview }]
   let colors = []; // [{ name, hex }]
-  let stock = {}; // { size: qty }
+  let stock = {}; // { size: qty }\n  let sizeType = "clothing"; // clothing | shoes
 
   const modal = qs("#modal");
   const form = qs("#product-form");
@@ -362,20 +362,24 @@ async function initProducts() {
   /* ---- modal pieces ---- */
   function renderColors() {
     qs("#c-list").innerHTML = colors.length
-      ? colors.map((c, i) => `<span class="tag-chip"><i style="background:${safeHex(c.hex)}"></i>${esc(c.name)}<button type="button" data-rm-color="${i}" aria-label="Remove ${esc(c.name)}">×</button></span>`).join("")
+      ? colors.map((c, i) => `<span class="tag-chip"><i style="background:${safeHex(c.hex)}"></i><code>${esc(c.hex)}</code><button type="button" data-rm-color="${i}" aria-label="Remove color ${esc(c.hex)}">×</button></span>`).join("")
       : '<span class="muted">No colors added.</span>';
+    qs("#c-add").disabled = colors.length >= 10;
+    qs("#c-hex").disabled = colors.length >= 10;
+    qs("#color-limit").textContent = `${colors.length}/10 colors`;
   }
 
   function renderSizes() {
-    const sizes = sortSizes(Object.keys(stock));
-    qs("#sz-list").innerHTML = sizes.length
-      ? sizes.map((s) => `
-          <div class="size-cell">
-            <b>${esc(s)}</b>
-            <input type="number" min="0" step="1" inputmode="numeric" value="${stock[s]}" data-size="${esc(s)}" aria-label="Stock for size ${esc(s)}">
-            <button type="button" data-rm-size="${esc(s)}" aria-label="Remove size ${esc(s)}">×</button>
-          </div>`).join("")
-      : '<span class="muted">No sizes yet. Use “Add default sizes” or add a custom size.</span>';
+    const presets = SIZE_PRESETS[sizeType];
+    qs("#sz-list").innerHTML = presets.map((s) => {
+      const selected = Object.prototype.hasOwnProperty.call(stock, s);
+      return `
+        <label class="size-choice ${selected ? "is-selected" : ""}">
+          <input type="checkbox" data-size-toggle="${esc(s)}" ${selected ? "checked" : ""}>
+          <b>${esc(s)}</b>
+          ${selected ? `<input class="size-qty" type="number" min="0" step="1" inputmode="numeric" value="${esc(stock[s])}" data-size="${esc(s)}" aria-label="Stock for size ${esc(s)}">` : ""}
+        </label>`;
+    }).join("");
   }
 
   function renderImages() {
@@ -390,18 +394,11 @@ async function initProducts() {
   }
 
   qs("#c-add").addEventListener("click", () => {
-    const name = qs("#c-name").value.trim();
-    if (!name) return;
-    if (colors.some((c) => c.name.toLowerCase() === name.toLowerCase())) {
-      toast("That color is already added", "error");
-      return;
-    }
-    colors.push({ name, hex: qs("#c-hex").value });
-    qs("#c-name").value = "";
+    if (colors.length >= 10) { toast("Maximum 10 colors per product", "error"); return; }
+    const hex = qs("#c-hex").value.toUpperCase();
+    if (colors.some((c) => c.hex.toUpperCase() === hex)) { toast("That color is already added", "error"); return; }
+    colors.push({ name: hex, hex });
     renderColors();
-  });
-  qs("#c-name").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") { e.preventDefault(); qs("#c-add").click(); }
   });
   qs("#c-list").addEventListener("click", (e) => {
     const b = e.target.closest("[data-rm-color]");
@@ -410,43 +407,28 @@ async function initProducts() {
     renderColors();
   });
 
-  qs("#sz-preset").addEventListener("click", () => {
-    const key = CATEGORY_SIZE_PRESET[qs("#f-category").value];
-    if (!key) {
-      toast("Choose a category first", "error");
+  qs("#sz-type").addEventListener("change", () => {
+    const nextType = qs("#sz-type").value;
+    if (nextType === sizeType) return;
+    if (Object.keys(stock).length && !confirm("Changing the size system will clear the current size quantities. Continue?")) {
+      qs("#sz-type").value = sizeType;
       return;
     }
-    SIZE_PRESETS[key].forEach((s) => { if (!(s in stock)) stock[s] = 0; });
+    stock = {};
+    sizeType = nextType;
     renderSizes();
   });
-  qs("#sz-add").addEventListener("click", () => {
-    const input = qs("#sz-name");
-    const name = input.value.trim().toUpperCase().slice(0, 12);
-    if (!name) return;
-    if (!/^[A-Z0-9 .\-/]+$/.test(name)) {
-      toast("Size can only contain letters, numbers, spaces, . - /", "error");
-      return;
-    }
-    if (!(name in stock)) stock[name] = 0;
-    input.value = "";
+  qs("#sz-list").addEventListener("change", (e) => {
+    const toggle = e.target.closest("input[data-size-toggle]");
+    if (!toggle) return;
+    const size = toggle.dataset.sizeToggle;
+    if (toggle.checked) stock[size] = 0;
+    else delete stock[size];
     renderSizes();
-  });
-  qs("#sz-name").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") { e.preventDefault(); qs("#sz-add").click(); }
   });
   qs("#sz-list").addEventListener("input", (e) => {
     const input = e.target.closest("input[data-size]");
     if (input) stock[input.dataset.size] = input.value;
-  });
-  qs("#sz-list").addEventListener("click", (e) => {
-    const b = e.target.closest("[data-rm-size]");
-    if (!b) return;
-    delete stock[b.dataset.rmSize];
-    renderSizes();
-  });
-
-  qs("#f-category").addEventListener("change", () => {
-    if (!Object.keys(stock).length) qs("#sz-preset").click();
   });
 
   qs("#f-files").addEventListener("change", (e) => {
@@ -484,7 +466,7 @@ async function initProducts() {
 
     imgs = product ? product.images.map((url) => ({ url })) : [];
     colors = product ? product.colors.map((c) => ({ ...c })) : [];
-    stock = product ? { ...product.stock } : {};
+    stock = product ? { ...product.stock } : {};\n    const existingSizes = Object.keys(stock);\n    sizeType = existingSizes.length && existingSizes.every((s) => ["39", "40", "41", "42", "43", "44"].includes(s)) ? "shoes" : "clothing";\n    qs("#sz-type").value = sizeType;
 
     qs("#f-name").value = product?.name || "";
     qs("#f-category").value = product?.category || "";
