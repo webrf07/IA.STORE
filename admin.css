@@ -198,3 +198,13 @@ body.admin { background: #EFE7DA; font-size: 15px; }
   .kv { grid-template-columns: 100px 1fr; }
   .stat__value { font-size: 2.2rem; }
 }
+/* Product option controls */
+.color-add { align-items: center; }
+.color-add input[type="color"] { width: 54px; height: 42px; padding: 3px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; }
+.tag-chip code { font-size: .76rem; color: var(--muted); }
+.size-type-field { max-width: 340px; margin-bottom: 10px; }
+.size-choice { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 6px 9px; border: 1px solid var(--line); border-radius: 5px; background: #fff; cursor: pointer; }
+.size-choice.is-selected { border-color: var(--navy); background: #edf1f5; }
+.size-choice > input[type="checkbox"] { accent-color: var(--navy); }
+.size-choice b { min-width: 22px; text-align: center; font-weight: 600; }
+.size-choice .size-qty { width: 58px; min-width: 0; padding: 5px; border: 1px solid var(--line); border-radius: 3px; text-align: center; background: var(--warm); }
