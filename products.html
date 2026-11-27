@@ -75,9 +75,9 @@
           <fieldset class="box">
             <legend>Colors</legend>
             <div class="color-add">
-              <input class="input" id="c-name" type="text" maxlength="30" placeholder="Color name (e.g. Navy)">
-              <input id="c-hex" type="color" value="#142B45" aria-label="Pick color">
+              <input id="c-hex" type="color" value="#142B45" aria-label="Choose a color">
               <button type="button" class="btn btn--outline btn--sm" id="c-add">Add color</button>
+              <span class="hint" id="color-limit">0/10 colors</span>
             </div>
             <div class="tags" id="c-list"></div>
           </fieldset>
@@ -85,9 +85,13 @@
           <fieldset class="box">
             <legend>Sizes &amp; stock</legend>
             <div class="size-tools">
-              <button type="button" class="btn btn--outline btn--sm" id="sz-preset">Add default sizes</button>
-              <input class="input" id="sz-name" type="text" maxlength="12" placeholder="Custom size (e.g. 48)">
-              <button type="button" class="btn btn--outline btn--sm" id="sz-add">Add size</button>
+              <label class="field size-type-field">Size system
+                <select class="input input--select" id="sz-type">
+                  <option value="clothing">Clothing — S, M, L, XL</option>
+                  <option value="shoes">Shoes — 39, 40, 41, 42, 43, 44</option>
+                </select>
+              </label>
+              <p class="hint">Select the sizes available for this product, then enter the stock quantity for each selected size.</p>
             </div>
             <div class="size-grid" id="sz-list"></div>
           </fieldset>
